@@ -24,6 +24,6 @@ For each category is given either 0, 1 or 2 points.
 - Readability=1 : Readability as expected
 - Readability=2 : Exceptional readability
 
-- Elegance=0 : Nothing special
+- Elegance=0 : Nothing out of the ordinary
 - Elegance=1 : Some interesting stuff found
 - Elegance=2 : Really interesting solution
