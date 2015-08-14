@@ -2,20 +2,21 @@
 # -*- coding: utf-8 -*-
 
 from sys import argv
-import codecs, operator
+from operator import add, sub
+import codecs
 
-alphabeth = u"ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ ."
+alphabet = u"ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ ."
 
 def toValidAlphabetIndex(n):
 	if n < 0:
-		return (n + len(alphabeth)) % len(alphabeth)
+		return (n + len(alphabet))
 	else:
-		return n % len(alphabeth)
+		return n % len(alphabet)
 
 def shiftChar(op, c, cKey):
-	if c in alphabeth:
-		n = op(alphabeth.index(c), alphabeth.index(cKey))
-		return alphabeth[toValidAlphabetIndex(n)]
+	if c in alphabet:
+		n = op(alphabet.index(c), alphabet.index(cKey))
+		return alphabet[toValidAlphabetIndex(n)]
 	else:
 		return c # keep char as is if not in alphabeth
 
@@ -30,11 +31,13 @@ def readMessage(path):
 		return file.read()
 
 def readKey(path):
-	#return "".join(readMessage(path).split())
-	return readMessage(path).replace("-", "").replace("\r", "").replace("\n", "")
+	return readMessage(path)\
+               .replace("-", "")\
+               .replace("\r", "")\
+               .replace("\n", "")
 
 def cryptoOperator(option):
-	return operator.sub if option.startswith("d") else operator.add
+	return sub if option.startswith("d") else add
 
 op = cryptoOperator(argv[1])
 message = readMessage(argv[2])
